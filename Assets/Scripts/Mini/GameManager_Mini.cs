@@ -26,6 +26,7 @@ public class GameManager_Mini : MonoBehaviour
     {
         gameManager_Mini = this;
         uiManager_Mini = FindObjectOfType<UIManager_Mini>();
+
     }
     private void Start()
     {
@@ -40,7 +41,7 @@ public class GameManager_Mini : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("MiniGameScene");
     }
 
     public void AddScore(int score)
@@ -67,8 +68,6 @@ public class GameManager_Mini : MonoBehaviour
 
     public void CloseGame()
     {
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("MainScene"));
-        SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("MiniGameScene"));
+        SceneManager.LoadScene("MainScene");
     }
-
 }
