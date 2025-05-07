@@ -19,6 +19,8 @@ public class GameManager_Mini : MonoBehaviour
         get { return gameManager_Mini; }
     }
 
+    public GameManager gameManager;
+
     private int currentScore = 0;
     private int bestScore = 0;
 
@@ -26,10 +28,11 @@ public class GameManager_Mini : MonoBehaviour
     {
         gameManager_Mini = this;
         uiManager_Mini = FindObjectOfType<UIManager_Mini>();
-
+        gameManager = GameManager.Instance;
     }
     private void Start()
     {
+        bestScore = gameManager.OutBestScore();
         uiManager_Mini.UpdateScore(0);
     }
 
@@ -41,6 +44,7 @@ public class GameManager_Mini : MonoBehaviour
 
     public void RestartGame()
     {
+        gameManager.SaveBestScore(bestScore);
         SceneManager.LoadScene("MiniGameScene");
     }
 
@@ -50,7 +54,6 @@ public class GameManager_Mini : MonoBehaviour
         uiManager_Mini.UpdateScore(currentScore);
         //Debug.Log("Score: " + currentScore);
     }
-
     public int BestScore()
     {
         if (currentScore >= bestScore)
@@ -68,6 +71,7 @@ public class GameManager_Mini : MonoBehaviour
 
     public void CloseGame()
     {
+        gameManager.SaveBestScore(bestScore);
         SceneManager.LoadScene("MainScene");
     }
 }

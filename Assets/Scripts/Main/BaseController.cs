@@ -5,7 +5,6 @@ public class BaseController : MonoBehaviour
     protected Rigidbody2D _rigidbody;
 
     [SerializeField] private SpriteRenderer characterRenderer;
-    [SerializeField] private Transform weaponPivot;
 
     protected Vector2 movementDirection = Vector2.zero;
     public Vector2 MovementDirection { get { return movementDirection; } }
@@ -55,11 +54,6 @@ public class BaseController : MonoBehaviour
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         bool isLeft = Mathf.Abs(rotZ) > 90f;
 
-        characterRenderer.flipX = isLeft;
-
-        if (weaponPivot != null)
-        {
-            weaponPivot.rotation = Quaternion.Euler(0, 0, rotZ);
-        }
+        characterRenderer.flipX = isLeft;      
     }
 }

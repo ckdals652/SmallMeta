@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerController : BaseController
 {
@@ -9,6 +10,7 @@ public class PlayerController : BaseController
     protected override void Start()
     {
         base.Start();
+        SetPlayerPosition(GameManager.Instance.OutPlayerPosition());
         camera = Camera.main;
     }
 
@@ -30,5 +32,11 @@ public class PlayerController : BaseController
         {
             lookDirection = lookDirection.normalized;
         }
+    }
+
+    public void SetPlayerPosition(Vector2 vector2)
+    {
+        //Debug.Log("위치 조정" + vector2);
+        gameObject.transform.position = vector2;
     }
 }
